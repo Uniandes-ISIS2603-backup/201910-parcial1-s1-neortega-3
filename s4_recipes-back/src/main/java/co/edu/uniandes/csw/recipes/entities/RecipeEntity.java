@@ -5,8 +5,12 @@
  */
 package co.edu.uniandes.csw.recipes.entities;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author CesarF
@@ -15,6 +19,10 @@ import javax.persistence.Entity;
 public class RecipeEntity extends BaseEntity {
     private String name;
     private String description;
+    
+    @PodamExclude
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<IngredientEntity> ingredients;
     
     public RecipeEntity(){
     
@@ -45,6 +53,20 @@ public class RecipeEntity extends BaseEntity {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the ingredients
+     */
+    public List<IngredientEntity> getIngredients() {
+        return ingredients;
+    }
+
+    /**
+     * @param ingredients the ingredients to set
+     */
+    public void setIngredients(List<IngredientEntity> ingredients) {
+        this.ingredients = ingredients;
     }
     
     

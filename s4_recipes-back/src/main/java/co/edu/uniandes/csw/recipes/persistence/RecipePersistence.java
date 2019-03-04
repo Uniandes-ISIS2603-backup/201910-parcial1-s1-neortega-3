@@ -32,5 +32,13 @@ public class RecipePersistence {
     }
     
     //TODO método crear de recipe
+    public RecipeEntity createRecipe(RecipeEntity recipe){
+        em.persist(recipe);
+        return recipe;
+    }
+    
+    public RecipeEntity findByName(String name){
+        return em.find(RecipeEntity.class, name);
+    }
 
 }
